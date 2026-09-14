@@ -39,18 +39,7 @@ export function SkillsSection({ skills }: { skills: Skill[] }) {
                         </span>
                       )}
                     </div>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between text-sm">
-                        <span>{skill.name}</span>
-                        <span className="text-xs text-muted-foreground">{skill.proficiency}%</span>
-                      </div>
-                      <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full bg-white/5">
-                        <div
-                          className="h-full rounded-full bg-accent transition-all duration-700"
-                          style={{ width: `${skill.proficiency}%` }}
-                        />
-                      </div>
-                    </div>
+                    <span className="flex-1 text-sm">{skill.name}</span>
                   </li>
                 ))}
               </ul>
