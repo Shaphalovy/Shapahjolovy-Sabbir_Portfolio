@@ -21,28 +21,31 @@ export function SkillsSection({ skills }: { skills: Skill[] }) {
           <Reveal key={category} delay={Math.min(i, 4) * 0.06}>
             <div className="glass h-full rounded-[var(--radius-lg)] p-6">
               <h3 className="mb-5 font-display text-lg font-medium text-accent">{category}</h3>
-              <ul className="flex flex-col gap-4">
+              <div className="flex flex-wrap gap-2.5">
                 {items.map((skill) => (
-                  <li key={skill.id} className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-md bg-white/5">
+                  <div
+                    key={skill.id}
+                    className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-2 transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 hover:bg-white/[0.06]"
+                  >
+                    <div className="flex h-5 w-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/5">
                       {skill.icon_url ? (
                         <Image
                           src={skill.icon_url}
                           alt={skill.name}
-                          width={20}
-                          height={20}
+                          width={14}
+                          height={14}
                           className="object-contain"
                         />
                       ) : (
-                        <span className="text-xs font-medium text-muted-foreground">
+                        <span className="text-[9px] font-medium text-muted-foreground">
                           {skill.name.slice(0, 1)}
                         </span>
                       )}
                     </div>
-                    <span className="flex-1 text-sm">{skill.name}</span>
-                  </li>
+                    <span className="text-sm">{skill.name}</span>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </Reveal>
         ))}
