@@ -76,7 +76,7 @@ export default async function ProjectPage({
           <ArrowLeft className="h-3.5 w-3.5" /> Back to projects
         </Link>
 
-        <div className="max-w-4xl">
+        <div>
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Badge>{project.category}</Badge>
           {project.project_date && <span>{formatDate(project.project_date)}</span>}
@@ -122,7 +122,7 @@ export default async function ProjectPage({
         </div>
 
         {embedUrl && (
-          <div className="relative mt-10 aspect-video max-w-5xl overflow-hidden rounded-[var(--radius-lg)] border border-border">
+          <div className="relative mt-10 aspect-video max-h-[85vh] w-full overflow-hidden rounded-[var(--radius-lg)] border border-border">
             <iframe
               src={embedUrl}
               className="absolute inset-0 h-full w-full"
@@ -139,7 +139,7 @@ export default async function ProjectPage({
         )}
 
         {project.description && (
-          <div className="mt-10 max-w-4xl">
+          <div className="mt-10">
             <Markdown content={project.description} />
           </div>
         )}
