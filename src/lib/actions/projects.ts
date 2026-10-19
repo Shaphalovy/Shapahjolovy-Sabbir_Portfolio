@@ -13,6 +13,7 @@ function parseProjectForm(formData: FormData) {
     summary: formData.get("summary"),
     description: formData.get("description"),
     category: formData.get("category"),
+    project_type: formData.get("project_type") || "automation",
     tech_stack: String(formData.get("tech_stack") || "")
       .split(",")
       .map((s) => s.trim())

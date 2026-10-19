@@ -70,7 +70,7 @@ export default async function ProjectPage({
 
       <article className="mx-auto max-w-3xl px-6 py-16">
         <Link
-          href="/#projects"
+          href={project.project_type === "webapp" ? "/#webapps" : "/#projects"}
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
         >
           <ArrowLeft className="h-3.5 w-3.5" /> Back to projects

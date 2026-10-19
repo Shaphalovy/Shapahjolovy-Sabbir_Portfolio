@@ -9,7 +9,8 @@ import type { SiteSection } from "@/lib/types";
 const DESCRIPTIONS: Partial<Record<string, string>> = {
   hero: "Your name, headline, and call-to-action at the top of the page.",
   about: "Bio, photo, and résumé download.",
-  projects: "Your project showcase grid.",
+  projects: "AI Automation projects grid.",
+  webapps: "Web App projects grid.",
   experience: "Work history timeline.",
   skills: "Skills grouped by category.",
   certifications: "Certifications and training.",

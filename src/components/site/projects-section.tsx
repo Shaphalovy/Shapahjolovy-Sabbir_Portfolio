@@ -6,7 +6,19 @@ import { ProjectCard } from "@/components/site/project-card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import type { Project } from "@/lib/types";
 
-export function ProjectsSection({ projects }: { projects: Project[] }) {
+interface ProjectsSectionProps {
+  projects: Project[];
+  id?: string;
+  title?: string;
+  description?: string;
+}
+
+export function ProjectsSection({
+  projects,
+  id = "projects",
+  title = "AI Automation Projects",
+  description = "Workflows, agents, and automations I've designed, built, and shipped.",
+}: ProjectsSectionProps) {
   const categories = React.useMemo(
     () => Array.from(new Set(projects.map((p) => p.category))),
     [projects]
@@ -18,14 +30,12 @@ export function ProjectsSection({ projects }: { projects: Project[] }) {
   const visible = active === "all" ? projects : projects.filter((p) => p.category === active);
 
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <section id={id} className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
       <Reveal>
         <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="font-display text-3xl font-medium sm:text-4xl">Selected work</h2>
-            <p className="mt-2 max-w-md text-muted-foreground">
-              A few things I&apos;ve designed, built, and shipped.
-            </p>
+            <h2 className="font-display text-3xl font-medium sm:text-4xl">{title}</h2>
+            <p className="mt-2 max-w-md text-muted-foreground">{description}</p>
           </div>
           {categories.length > 1 && (
             <Tabs value={active} onValueChange={setActive}>

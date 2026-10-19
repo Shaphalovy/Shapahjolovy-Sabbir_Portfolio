@@ -11,7 +11,7 @@ export function SkillsSection({ skills }: { skills: Skill[] }) {
   }, {});
 
   return (
-    <section id="skills" className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <section id="skills" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
       <Reveal>
         <h2 className="font-display text-3xl font-medium sm:text-4xl">Skills</h2>
       </Reveal>

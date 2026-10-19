@@ -45,7 +45,25 @@ export function SectionRenderer({
           case "about":
             return <AboutSection key={section.id} profile={profile} />;
           case "projects":
-            return <ProjectsSection key={section.id} projects={projects} />;
+            return (
+              <ProjectsSection
+                key={section.id}
+                id="projects"
+                title="AI Automation Projects"
+                description="Workflows, agents, and automations I've designed, built, and shipped."
+                projects={projects.filter((p) => p.project_type !== "webapp")}
+              />
+            );
+          case "webapps":
+            return (
+              <ProjectsSection
+                key={section.id}
+                id="webapps"
+                title="Web App Projects"
+                description="Websites and web applications I've built from the ground up."
+                projects={projects.filter((p) => p.project_type === "webapp")}
+              />
+            );
           case "experience":
             return <ExperienceSection key={section.id} experience={experience} />;
           case "skills":

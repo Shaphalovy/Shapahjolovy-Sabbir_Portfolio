@@ -8,7 +8,7 @@ export function BlogSection({ posts }: { posts: BlogPost[] }) {
   if (posts.length === 0) return null;
 
   return (
-    <section id="blog" className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <section id="blog" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
       <Reveal>
         <div className="mb-10 flex items-end justify-between">
           <h2 className="font-display text-3xl font-medium sm:text-4xl">Writing</h2>
