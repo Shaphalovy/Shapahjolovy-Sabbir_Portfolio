@@ -12,7 +12,7 @@ export function CertificationsSection({
   if (certifications.length === 0) return null;
 
   return (
-    <section id="certifications" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
+    <section id="certifications" className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
         <h2 className="font-display text-3xl font-medium sm:text-4xl">
           Certifications &amp; training

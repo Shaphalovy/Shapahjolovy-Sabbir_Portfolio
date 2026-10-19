@@ -12,7 +12,7 @@ export function Footer({
   const visible = socials.filter((s) => s.visible);
 
   return (
-    <footer className="mx-auto max-w-7xl px-6 pb-10 pt-6">
+    <footer className="mx-auto max-w-[96rem] px-6 pb-10 pt-6">
       <div className="glass flex flex-col items-center gap-5 rounded-[var(--radius-lg)] px-6 py-8 text-center sm:flex-row sm:justify-between sm:text-left">
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} {fullName}. Built with care.

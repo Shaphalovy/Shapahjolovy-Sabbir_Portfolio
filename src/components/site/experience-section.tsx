@@ -11,7 +11,7 @@ export function ExperienceSection({ experience }: { experience: Experience[] }) 
   );
 
   return (
-    <section id="experience" className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
+    <section id="experience" className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
         <h2 className="font-display text-3xl font-medium sm:text-4xl">Experience</h2>
       </Reveal>

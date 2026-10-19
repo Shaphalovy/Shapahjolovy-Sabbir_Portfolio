@@ -30,7 +30,7 @@ export function ProjectsSection({
   const visible = active === "all" ? projects : projects.filter((p) => p.category === active);
 
   return (
-    <section id={id} className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
+    <section id={id} className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
         <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
           <div>
@@ -52,7 +52,7 @@ export function ProjectsSection({
         </div>
       </Reveal>
 
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {visible.map((project, i) => (
           <Reveal key={project.id} delay={Math.min(i, 5) * 0.06}>
             <ProjectCard project={project} />

@@ -26,15 +26,15 @@ export default async function BlogIndexPage() {
         resumeUrl={profile?.resume_url}
       />
       <div className="pt-10">
-        <h1 className="mx-auto max-w-7xl px-6 font-display text-4xl font-medium sm:text-5xl">
+        <h1 className="mx-auto max-w-[96rem] px-6 font-display text-4xl font-medium sm:text-5xl">
           Writing
         </h1>
         {posts.length === 0 ? (
-          <p className="mx-auto mt-6 max-w-7xl px-6 text-muted-foreground">
+          <p className="mx-auto mt-6 max-w-[96rem] px-6 text-muted-foreground">
             No posts yet — check back soon.
           </p>
         ) : (
-          <section className="mx-auto max-w-7xl px-6 py-12">
+          <section className="mx-auto max-w-[96rem] px-6 py-12">
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {posts.map((post, i) => (
                 <BlogCard key={post.id} post={post} delay={Math.min(i, 5) * 0.06} />
