@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ExternalLink, FileText } from "lucide-react";
+import { ArrowLeft, FileText, Play } from "lucide-react";
 import { TbBrandGithub } from "react-icons/tb";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -89,7 +89,7 @@ export default async function ProjectPage({
           {project.live_url && (
             <Button asChild>
               <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                Live demo <ExternalLink className="h-4 w-4" />
+                <Play className="h-4 w-4 fill-current" /> Live demo
               </a>
             </Button>
           )}

@@ -35,7 +35,7 @@ export default async function BlogIndexPage() {
           </p>
         ) : (
           <section className="mx-auto max-w-[96rem] px-6 py-12">
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {posts.map((post, i) => (
                 <BlogCard key={post.id} post={post} delay={Math.min(i, 5) * 0.06} />
               ))}

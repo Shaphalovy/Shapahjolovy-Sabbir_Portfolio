@@ -59,7 +59,7 @@ export default async function BlogPostPage({
         resumeUrl={profile?.resume_url}
       />
 
-      <article className="mx-auto max-w-3xl px-6 py-16">
+      <article className="mx-auto max-w-[96rem] px-6 py-16">
         <Link
           href="/blog"
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
@@ -75,8 +75,8 @@ export default async function BlogPostPage({
         <h1 className="mt-2 font-display text-4xl font-medium sm:text-5xl">{post.title}</h1>
 
         {post.cover_image_url && (
-          <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-[var(--radius-lg)] border border-border">
-            <Image src={post.cover_image_url} alt={post.title} fill className="object-cover" />
+          <div className="relative mt-8 aspect-[16/9] max-h-[70vh] w-full overflow-hidden rounded-[var(--radius-lg)] border border-border bg-background-alt">
+            <Image src={post.cover_image_url} alt={post.title} fill sizes="100vw" className="object-contain" />
           </div>
         )}
 

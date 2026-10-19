@@ -12,13 +12,13 @@ export function BlogCard({ post, delay = 0 }: { post: BlogPost; delay?: number }
         className="glass group flex h-full flex-col overflow-hidden rounded-[var(--radius-lg)] transition-all hover:-translate-y-1 hover:border-accent/40"
       >
         {post.cover_image_url && (
-          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border">
+          <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-border bg-background-alt">
             <Image
               src={post.cover_image_url}
               alt={post.title}
               fill
-              sizes="(min-width: 768px) 33vw, 90vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(min-width: 1280px) 25vw, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
             />
           </div>
         )}
