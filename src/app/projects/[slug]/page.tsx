@@ -87,7 +87,10 @@ export default async function ProjectPage({
 
         <div className="mt-6 flex flex-wrap gap-3">
           {project.live_url && (
-            <Button asChild>
+            <Button
+              asChild
+              className="bg-emerald-600 text-white shadow-[0_6px_20px_-8px_rgba(5,150,105,0.6)] hover:bg-emerald-500"
+            >
               <a href={project.live_url} target="_blank" rel="noopener noreferrer">
                 <Play className="h-4 w-4 fill-current" /> Live demo
               </a>
