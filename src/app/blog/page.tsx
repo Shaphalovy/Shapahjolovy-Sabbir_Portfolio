@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { BlogCard } from "@/components/site/blog-card";
@@ -26,6 +28,14 @@ export default async function BlogIndexPage() {
         resumeUrl={profile?.resume_url}
       />
       <div className="pt-10">
+        <div className="mx-auto max-w-[96rem] px-6">
+          <Link
+            href="/"
+            className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
+          >
+            <ArrowLeft className="h-3.5 w-3.5" /> Back to home
+          </Link>
+        </div>
         <h1 className="mx-auto max-w-[96rem] px-6 font-display text-4xl font-medium sm:text-5xl">
           Writing
         </h1>
