@@ -20,7 +20,7 @@ import { FileUpload } from "@/components/admin/file-upload";
 import { FileUploadMulti } from "@/components/admin/file-upload-multi";
 import { createProject, updateProject } from "@/lib/actions/projects";
 import { slugify } from "@/lib/utils";
-import type { Project } from "@/lib/types";
+import type { Project, ProjectType } from "@/lib/types";
 
 function SaveButton({ label }: { label: string }) {
   const { pending } = useFormStatus();
@@ -41,6 +41,7 @@ export function ProjectForm({ project, onSaved }: { project?: Project; onSaved: 
   const [coverImage, setCoverImage] = useState(project?.cover_image_url ?? "");
   const [images, setImages] = useState<string[]>(project?.images ?? []);
   const [status, setStatus] = useState(project?.status ?? "published");
+  const [projectType, setProjectType] = useState<ProjectType>(project?.project_type ?? "automation");
   const [featured, setFeatured] = useState(project?.featured ?? false);
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export function ProjectForm({ project, onSaved }: { project?: Project; onSaved: 
       <input type="hidden" name="cover_image_url" value={coverImage} />
       <input type="hidden" name="images" value={images.join(",")} />
       <input type="hidden" name="status" value={status} />
+      <input type="hidden" name="project_type" value={projectType} />
 
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="title">Title</Label>
@@ -105,13 +107,26 @@ export function ProjectForm({ project, onSaved }: { project?: Project; onSaved: 
         <Textarea id="description" name="description" rows={6} defaultValue={project?.description} />
       </div>
 
+      <div className="flex flex-col gap-1.5">
+        <Label htmlFor="project-type-select">Project type (which homepage section)</Label>
+        <Select value={projectType} onValueChange={(v) => setProjectType(v as ProjectType)}>
+          <SelectTrigger id="project-type-select">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="automation">AI Automation Project</SelectItem>
+            <SelectItem value="webapp">Web App Project</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
+
       <div className="grid grid-cols-2 gap-4">
         <div className="flex flex-col gap-1.5">
           <Label htmlFor="category">Category</Label>
           <Input
             id="category"
             name="category"
-            placeholder="Automation"
+            placeholder="e.g. Voice Agent, RAG, Dashboard, SaaS"
             defaultValue={project?.category}
             required
           />

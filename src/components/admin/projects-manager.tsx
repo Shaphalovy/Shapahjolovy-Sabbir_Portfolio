@@ -60,6 +60,9 @@ export function ProjectsManager({ projects }: { projects: Project[] }) {
             <div className="min-w-0 flex-1">
               <div className="flex flex-wrap items-center gap-2">
                 <p className="truncate font-medium">{project.title}</p>
+                <Badge variant="outline">
+                  {project.project_type === "webapp" ? "Web App" : "Automation"}
+                </Badge>
                 {project.featured && <Badge variant="solid">Featured</Badge>}
                 {project.status === "draft" && <Badge variant="outline">Draft</Badge>}
               </div>

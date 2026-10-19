@@ -4,6 +4,7 @@ export type SectionKey =
   | "hero"
   | "about"
   | "projects"
+  | "webapps"
   | "experience"
   | "skills"
   | "certifications"
@@ -37,6 +38,8 @@ export interface Social {
   created_at: string;
 }
 
+export type ProjectType = "automation" | "webapp";
+
 export type ProjectStatus = "draft" | "published";
 
 export interface Project {
@@ -46,6 +49,7 @@ export interface Project {
   summary: string;
   description: string;
   category: string;
+  project_type: ProjectType;
   tech_stack: string[];
   cover_image_url: string | null;
   images: string[];

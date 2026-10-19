@@ -35,7 +35,7 @@ export function ContactSection({ profile }: { profile: Profile }) {
   }, [state]);
 
   return (
-    <section id="contact" className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+    <section id="contact" className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
         <div className="glass grid gap-10 rounded-[var(--radius-lg)] p-8 sm:p-12 md:grid-cols-2">
           <div className="flex flex-col justify-between gap-8">

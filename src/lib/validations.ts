@@ -28,6 +28,7 @@ export const projectSchema = z.object({
   summary: z.string().min(1, "Required"),
   description: z.string().optional().default(""),
   category: z.string().min(1, "Required"),
+  project_type: z.enum(["automation", "webapp"]).default("automation"),
   tech_stack: z.array(z.string()).default([]),
   cover_image_url: z.string().optional().nullable(),
   images: z.array(z.string()).default([]),

@@ -11,12 +11,12 @@ export function ExperienceSection({ experience }: { experience: Experience[] }) 
   );
 
   return (
-    <section id="experience" className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+    <section id="experience" className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
         <h2 className="font-display text-3xl font-medium sm:text-4xl">Experience</h2>
       </Reveal>
 
-      <div className="relative mt-12 flex flex-col gap-10">
+      <div className="relative mt-12 flex max-w-4xl flex-col gap-10">
         <div
           aria-hidden
           className="absolute bottom-2 left-[19px] top-2 w-px bg-border sm:left-[23px]"

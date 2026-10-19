@@ -28,7 +28,7 @@ export function Hero({ profile }: { profile: Profile }) {
         variants={container}
         initial="hidden"
         animate="visible"
-        className="relative z-10 mx-auto flex max-w-4xl flex-col items-start gap-6"
+        className="relative z-10 mx-auto flex max-w-[96rem] flex-col items-start gap-6"
       >
         {profile.location && (
           <motion.p

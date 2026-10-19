@@ -10,7 +10,8 @@ import type { SiteSection } from "@/lib/types";
 
 const LABELS: Partial<Record<string, string>> = {
   about: "About",
-  projects: "Work",
+  projects: "Automation",
+  webapps: "Web Apps",
   experience: "Experience",
   skills: "Skills",
   certifications: "Certifications",
@@ -51,7 +52,7 @@ export function Navbar({
         scrolled ? "py-3" : "py-5"
       )}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6">
+      <div className="mx-auto flex max-w-[96rem] items-center justify-between px-6">
         <nav
           className={cn(
             "glass flex w-full items-center justify-between rounded-full px-4 py-2 transition-shadow",

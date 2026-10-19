@@ -8,7 +8,7 @@ export function AboutSection({ profile }: { profile: Profile }) {
   if (!profile.bio) return null;
 
   return (
-    <section id="about" className="mx-auto max-w-5xl px-6 py-20 sm:py-28">
+    <section id="about" className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
         <div className="glass grid gap-10 rounded-[var(--radius-lg)] p-8 sm:p-12 md:grid-cols-[auto_1fr] md:items-start">
           {profile.avatar_url && (
