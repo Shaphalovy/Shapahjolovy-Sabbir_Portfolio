@@ -55,7 +55,7 @@ export function Navbar({
       <div className="mx-auto flex max-w-[96rem] items-center justify-between px-6">
         <nav
           className={cn(
-            "glass flex w-full items-center justify-between rounded-full px-4 py-2 transition-shadow",
+            "glass-nav flex w-full items-center justify-between rounded-full px-4 py-2 transition-shadow",
             scrolled && "shadow-lg"
           )}
         >
@@ -100,7 +100,7 @@ export function Navbar({
 
       {open && (
         <div className="mx-6 mt-2">
-          <div className="glass flex flex-col gap-1 rounded-[var(--radius-lg)] p-3 md:hidden">
+          <div className="glass-nav flex flex-col gap-1 rounded-[var(--radius-lg)] p-3 md:hidden">
             {links.map((section) => (
               <a
                 key={section.id}

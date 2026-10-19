@@ -1,12 +1,12 @@
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import { ArrowLeft, ExternalLink, FileText } from "lucide-react";
+import { ArrowLeft, FileText, Play } from "lucide-react";
 import { TbBrandGithub } from "react-icons/tb";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Markdown } from "@/components/site/markdown";
+import { ProjectGallery } from "@/components/site/project-gallery";
 import { getEmbedUrl } from "@/lib/video-embed";
 import { formatDate } from "@/lib/utils";
 import {
@@ -68,7 +68,7 @@ export default async function ProjectPage({
         resumeUrl={profile?.resume_url}
       />
 
-      <article className="mx-auto max-w-3xl px-6 py-16">
+      <article className="mx-auto max-w-[96rem] px-6 py-16">
         <Link
           href={project.project_type === "webapp" ? "/#webapps" : "/#projects"}
           className="mb-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground"
@@ -76,6 +76,7 @@ export default async function ProjectPage({
           <ArrowLeft className="h-3.5 w-3.5" /> Back to projects
         </Link>
 
+        <div>
         <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
           <Badge>{project.category}</Badge>
           {project.project_date && <span>{formatDate(project.project_date)}</span>}
@@ -86,9 +87,12 @@ export default async function ProjectPage({
 
         <div className="mt-6 flex flex-wrap gap-3">
           {project.live_url && (
-            <Button asChild>
+            <Button
+              asChild
+              className="bg-emerald-600 text-white shadow-[0_6px_20px_-8px_rgba(5,150,105,0.6)] hover:bg-emerald-500"
+            >
               <a href={project.live_url} target="_blank" rel="noopener noreferrer">
-                Live demo <ExternalLink className="h-4 w-4" />
+                <Play className="h-4 w-4 fill-current" /> Live demo
               </a>
             </Button>
           )}
@@ -118,8 +122,10 @@ export default async function ProjectPage({
           </div>
         )}
 
+        </div>
+
         {embedUrl && (
-          <div className="relative mt-10 aspect-video overflow-hidden rounded-[var(--radius-lg)] border border-border">
+          <div className="relative mt-10 aspect-video max-h-[85vh] w-full overflow-hidden rounded-[var(--radius-lg)] border border-border">
             <iframe
               src={embedUrl}
               className="absolute inset-0 h-full w-full"
@@ -130,21 +136,8 @@ export default async function ProjectPage({
         )}
 
         {gallery.length > 0 && (
-          <div className="mt-10 grid gap-4 sm:grid-cols-2">
-            {gallery.map((src, i) => (
-              <div
-                key={src + i}
-                className="relative aspect-[16/10] overflow-hidden rounded-[var(--radius-md)] border border-border"
-              >
-                <Image
-                  src={src}
-                  alt={`${project.title} screenshot ${i + 1}`}
-                  fill
-                  sizes="(min-width: 640px) 50vw, 100vw"
-                  className="object-cover"
-                />
-              </div>
-            ))}
+          <div className="mt-10">
+            <ProjectGallery images={gallery} title={project.title} />
           </div>
         )}
 
