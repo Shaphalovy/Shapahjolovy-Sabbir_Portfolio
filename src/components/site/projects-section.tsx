@@ -3,6 +3,7 @@
 import * as React from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LoopingRow, type LoopingRowHandle } from "@/components/site/looping-row";
 import { Reveal } from "@/components/reveal";
 import { ProjectCard } from "@/components/site/project-card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -30,45 +31,12 @@ export function ProjectsSection({
   );
   const [active, setActive] = React.useState("all");
 
-  const trackRef = React.useRef<HTMLDivElement>(null);
-  const [canLeft, setCanLeft] = React.useState(false);
-  const [canRight, setCanRight] = React.useState(false);
-
-  const updateArrows = React.useCallback(() => {
-    const el = trackRef.current;
-    if (!el) return;
-    setCanLeft(el.scrollLeft > 4);
-    setCanRight(el.scrollLeft + el.clientWidth < el.scrollWidth - 4);
-  }, []);
-
-  React.useEffect(() => {
-    if (layout !== "scroll") return;
-    const el = trackRef.current;
-    if (!el) return;
-    updateArrows();
-    el.addEventListener("scroll", updateArrows, { passive: true });
-    const ro = new ResizeObserver(updateArrows);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", updateArrows);
-      ro.disconnect();
-    };
-  }, [layout, updateArrows, active, projects.length]);
-
-  // Jump back to the first card when the filter changes.
-  React.useEffect(() => {
-    trackRef.current?.scrollTo({ left: 0 });
-  }, [active]);
-
-  const scrollByPage = (dir: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.scrollBy({ left: dir * el.clientWidth * 0.9, behavior: "smooth" });
-  };
+  const rowRef = React.useRef<LoopingRowHandle>(null);
 
   if (projects.length === 0) return null;
 
   const visible = active === "all" ? projects : projects.filter((p) => p.category === active);
+  const loop = layout === "scroll" && visible.length >= 2;
 
   return (
     <section id={id} className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
@@ -91,15 +59,14 @@ export function ProjectsSection({
                 </TabsList>
               </Tabs>
             )}
-            {layout === "scroll" && (canLeft || canRight) && (
+            {loop && (
               <div className="flex items-center gap-2">
                 <Button
                   type="button"
                   variant="outline"
                   size="icon"
                   aria-label="Scroll projects left"
-                  disabled={!canLeft}
-                  onClick={() => scrollByPage(-1)}
+                  onClick={() => rowRef.current?.nudge(-1)}
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
@@ -108,8 +75,7 @@ export function ProjectsSection({
                   variant="outline"
                   size="icon"
                   aria-label="Scroll projects right"
-                  disabled={!canRight}
-                  onClick={() => scrollByPage(1)}
+                  onClick={() => rowRef.current?.nudge(1)}
                 >
                   <ChevronRight className="h-4 w-4" />
                 </Button>
@@ -119,20 +85,15 @@ export function ProjectsSection({
         </div>
       </Reveal>
 
-      {layout === "scroll" ? (
-        <div
-          ref={trackRef}
-          className="-my-4 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto scroll-smooth py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {visible.map((project) => (
-            <div
-              key={project.id}
-              className="w-[85%] shrink-0 snap-start sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] xl:w-[calc((100%-4.5rem)/4)]"
-            >
-              <ProjectCard project={project} />
-            </div>
+      {loop ? (
+        <LoopingRow
+          ref={rowRef}
+          resetKey={active}
+          itemClassName="w-[85cqw] sm:w-[calc((100cqw-1.5rem)/2)] lg:w-[calc((100cqw-3rem)/3)] xl:w-[calc((100cqw-4.5rem)/4)]"
+          items={visible.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
-        </div>
+        />
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {visible.map((project, i) => (
