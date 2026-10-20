@@ -21,7 +21,7 @@ export function Hero({ profile }: { profile: Profile }) {
   return (
     <section
       id="hero"
-      className="relative flex min-h-[92vh] items-center overflow-hidden px-6"
+      className="relative -mt-[5.625rem] flex min-h-[92vh] items-center overflow-hidden px-6 pt-[5.625rem]"
     >
       <div className="ambient-glow" />
       <motion.div

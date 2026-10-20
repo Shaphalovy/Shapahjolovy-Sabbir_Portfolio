@@ -59,6 +59,7 @@ export function SectionRenderer({
               <ProjectsSection
                 key={section.id}
                 id="webapps"
+                layout="scroll"
                 title="Web App Projects"
                 description="Websites and web applications I've built from the ground up."
                 projects={projects.filter((p) => p.project_type === "webapp")}
