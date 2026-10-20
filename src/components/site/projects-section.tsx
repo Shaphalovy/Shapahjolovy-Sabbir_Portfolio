@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight, MoveHorizontal } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LoopingRow, type LoopingRowHandle } from "@/components/site/looping-row";
 import { Reveal } from "@/components/reveal";
@@ -41,10 +41,10 @@ export function ProjectsSection({
   return (
     <section id={id} className="mx-auto max-w-[96rem] px-6 py-20 sm:py-28">
       <Reveal>
-        <div className="mb-10 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-10 flex flex-wrap items-end justify-between gap-x-6 gap-y-5">
           <div>
             <h2 className="font-display text-3xl font-medium sm:text-4xl">{title}</h2>
-            <p className="mt-2 max-w-md text-muted-foreground">{description}</p>
+            <p className="mt-2 text-muted-foreground">{description}</p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
             {categories.length > 1 && (
@@ -61,9 +61,6 @@ export function ProjectsSection({
             )}
             {loop && (
               <div className="flex items-center gap-2">
-                <span className="mr-1 hidden items-center gap-1.5 text-xs text-muted-foreground lg:inline-flex">
-                  <MoveHorizontal className="h-3.5 w-3.5" /> Drag to explore
-                </span>
                 <Button
                   type="button"
                   variant="outline"
