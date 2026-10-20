@@ -13,6 +13,11 @@ interface LoopingRowProps {
   itemClassName: string;
   /** When this changes the row jumps back to its start (e.g. filter changed). */
   resetKey?: string;
+  /**
+   * Start scrolled by part of a card so the neighbouring cards peek in from
+   * both sides, hinting that the row can be dragged.
+   */
+  peek?: boolean;
 }
 
 // Momentum decay time constant in ms: after release the speed falls to ~37%
@@ -25,7 +30,7 @@ const TAU = 325;
  * the arrow buttons can go on without ever hitting an end.
  */
 export const LoopingRow = React.forwardRef<LoopingRowHandle, LoopingRowProps>(
-  function LoopingRow({ items, itemClassName, resetKey }, ref) {
+  function LoopingRow({ items, itemClassName, resetKey, peek = false }, ref) {
     const viewportRef = React.useRef<HTMLDivElement>(null);
     const trackRef = React.useRef<HTMLDivElement>(null);
     const setRef = React.useRef<HTMLDivElement>(null);
@@ -37,6 +42,7 @@ export const LoopingRow = React.forwardRef<LoopingRowHandle, LoopingRowProps>(
       setW: 0,
       down: false,
       moved: false,
+      placed: false,
       suppressClick: false,
       startX: 0,
       lastX: 0,
@@ -44,6 +50,17 @@ export const LoopingRow = React.forwardRef<LoopingRowHandle, LoopingRowProps>(
       raf: 0,
       lastFrame: 0,
     });
+
+    // Where the row rests before the visitor touches it.
+    const restingX = React.useCallback(() => {
+      const vp = viewportRef.current;
+      const card = setRef.current?.firstElementChild as HTMLElement | null;
+      if (!peek || !vp || !card) return 0;
+      // On narrow screens one card already fills the view and the next one
+      // peeks in on the right, so no left-hand peek is needed there.
+      if (card.offsetWidth > vp.clientWidth * 0.6) return 0;
+      return -card.offsetWidth * 0.45;
+    }, [peek]);
 
     const apply = React.useCallback(() => {
       const st = s.current;
@@ -112,6 +129,11 @@ export const LoopingRow = React.forwardRef<LoopingRowHandle, LoopingRowProps>(
 
     React.useLayoutEffect(() => {
       measure();
+      if (!s.current.placed) {
+        s.current.placed = true;
+        s.current.x = restingX();
+        apply();
+      }
       const vp = viewportRef.current;
       const set = setRef.current;
       if (!vp || !set || typeof ResizeObserver === "undefined") return;
@@ -119,14 +141,14 @@ export const LoopingRow = React.forwardRef<LoopingRowHandle, LoopingRowProps>(
       ro.observe(vp);
       ro.observe(set);
       return () => ro.disconnect();
-    }, [measure, items.length]);
+    }, [measure, restingX, apply, items.length]);
 
     React.useEffect(() => {
       const st = s.current;
-      st.x = 0;
+      st.x = restingX();
       st.v = 0;
       apply();
-    }, [resetKey, apply]);
+    }, [resetKey, restingX, apply]);
 
     React.useEffect(() => {
       const st = s.current;

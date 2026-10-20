@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, MoveHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LoopingRow, type LoopingRowHandle } from "@/components/site/looping-row";
 import { Reveal } from "@/components/reveal";
@@ -61,6 +61,9 @@ export function ProjectsSection({
             )}
             {loop && (
               <div className="flex items-center gap-2">
+                <span className="mr-1 hidden items-center gap-1.5 text-xs text-muted-foreground lg:inline-flex">
+                  <MoveHorizontal className="h-3.5 w-3.5" /> Drag to explore
+                </span>
                 <Button
                   type="button"
                   variant="outline"
@@ -89,6 +92,7 @@ export function ProjectsSection({
         <LoopingRow
           ref={rowRef}
           resetKey={active}
+          peek
           itemClassName="w-[85cqw] sm:w-[calc((100cqw-1.5rem)/2)] lg:w-[calc((100cqw-3rem)/3)] xl:w-[calc((100cqw-4.5rem)/4)]"
           items={visible.map((project) => (
             <ProjectCard key={project.id} project={project} />
